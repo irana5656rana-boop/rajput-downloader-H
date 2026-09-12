@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080808;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #252525;
+  background: #0d0d0d;
+}
+
+.menu,
+.moon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.logo {
+  color: #ff2020;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+main {
+  width: 92%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 35px 10px 25px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  color: #ff2525;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.platform {
+  background: #121212;
+  color: #ddd;
+  border: 1px solid #292929;
+  border-radius: 12px;
+  padding: 14px 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.platform.active {
+  background: #ff1717;
+  border-color: #ff1717;
+  color: white;
+}
+
+.platform:last-child {
+  grid-column: 1 / -1;
+}
+
+.download-box,
+.result {
+  background: #101010;
+  border: 1px solid #292929;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #080808;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 5px 7px;
+}
+
+.url-row span {
+  font-size: 19px;
+}
+
+.url-row input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: white;
+  padding: 12px 5px;
+  font-size: 14px;
+}
+
+.url-row button {
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-weight: bold;
+}
+
+.mode-row,
+.quality-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.mode,
+.quality {
+  flex: 1;
+  white-space: nowrap;
+  background: #171717;
+  color: #ddd;
+  border: 1px solid #333;
+  border-radius: 9px;
+  padding: 11px 12px;
+  font-weight: bold;
+}
+
+.mode.active,
+.quality.active {
+  background: #e71919;
+  color: white;
+  border-color: #e71919;
+}
+
+.download-box h3 {
+  font-size: 12px;
+  color: #aaa;
+  margin: 22px 0 12px;
+  letter-spacing: 1px;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ddd;
+  font-size: 14px;
+  padding: 9px;
+  background: #151515;
+  border-radius: 8px;
+}
+
+.options input {
+  accent-color: #ff1b1b;
+  width: 17px;
+  height: 17px;
+}
+
+.download-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #ed1717;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+.download-btn:active {
+  transform: scale(0.98);
+}
+
+.status {
+  text-align: center;
+  margin-top: 13px;
+  color: #ff7777;
+  font-size: 13px;
+}
+
+.result {
+  min-height: 100px;
+}
+
+.result h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+#resultContent {
+  color: #999;
+  font-size: 14px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #0d0d0d;
+  border-top: 1px solid #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.bottom-nav button {
+  background: transparent;
+  border: 0;
+  color: #aaa;
+  font-size: 20px;
+}
+
+.bottom-nav small {
+  display: block;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.user-name {
+  text-align: center;
+  color: #ff2222;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.user-name span {
+  color: #aaa;
+  font-size: 10px;
+}
+
+@media (max-width: 430px) {
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .platform {
+    font-size: 12px;
+  }
+
+  .quality,
+  .mode {
+    font-size: 12px;
+  }
+}
