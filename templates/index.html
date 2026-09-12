@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAJPUT Multi-Platform Downloader</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="menu">☰</div>
+  <div class="logo">♛ RAJPUT</div>
+  <div class="moon">☾</div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1>MULTI-PLATFORM DOWNLOADER</h1>
+    <p>VIDEO &nbsp;|&nbsp; AUDIO &nbsp;|&nbsp; FAST &nbsp;|&nbsp; 4K</p>
+  </section>
+
+  <section class="platforms">
+    <button class="platform active">TikTok</button>
+    <button class="platform">Instagram</button>
+    <button class="platform">Facebook</button>
+    <button class="platform">YouTube</button>
+    <button class="platform">Audio / Song</button>
+  </section>
+
+  <section class="download-box">
+
+    <div class="url-row">
+      <span>🔗</span>
+      <input id="url" type="url" placeholder="Paste video URL here">
+      <button id="pasteBtn">Paste</button>
+    </div>
+
+    <div class="mode-row">
+      <button class="mode active" data-mode="video">🎬 Video</button>
+      <button class="mode" data-mode="audio">🎵 Audio (MP3)</button>
+    </div>
+
+    <div class="quality-row">
+      <button class="quality" data-quality="480">480p</button>
+      <button class="quality active" data-quality="720">720p</button>
+      <button class="quality" data-quality="1080">1080p</button>
+      <button class="quality" data-quality="1440">1440p</button>
+      <button class="quality" data-quality="2160">2160p 4K</button>
+    </div>
+
+    <h3>ADDITIONAL OPTIONS</h3>
+
+    <div class="options">
+      <label>
+        <input type="checkbox" id="thumbnail">
+        Download Thumbnail
+      </label>
+
+      <label>
+        <input type="checkbox" id="audio">
+        Extract Audio (MP3)
+      </label>
+
+      <label>
+        <input type="checkbox" id="subtitles">
+        Download Subtitles
+      </label>
+
+      <label>
+        <input type="checkbox" id="hqAudio">
+        High Quality Audio
+      </label>
+    </div>
+
+    <button id="downloadBtn" class="download-btn">
+      DOWNLOAD NOW
+    </button>
+
+    <div id="status" class="status"></div>
+
+  </section>
+
+  <section id="result" class="result">
+    <h2>Ready to Download</h2>
+    <div id="resultContent">
+      Paste a video URL above.
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav">
+  <button>⌂<small>Home</small></button>
+  <div class="user-name">irana__56<br><span>Hassan Rajput</span></div>
+  <button>◷<small>History</small></button>
+  <button>⚙<small>Settings</small></button>
+</nav>
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>
