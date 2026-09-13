@@ -6,7 +6,35 @@ const resultContent = document.getElementById("resultContent");
 
 let mode = "video";
 let quality = "720";
+let platform = "TikTok";
 
+// PLATFORM SWITCH
+document.querySelectorAll(".platform").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".platform").forEach(x => {
+      x.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+    platform = btn.textContent.trim();
+
+    const placeholders = {
+      "TikTok": "Paste TikTok video URL here",
+      "Instagram": "Paste Instagram video URL here",
+      "Facebook": "Paste Facebook video URL here",
+      "YouTube": "Paste YouTube video URL here",
+      "Audio / Song": "Paste video or song URL here"
+    };
+
+    urlInput.placeholder =
+      placeholders[platform] || "Paste video URL here";
+
+    statusBox.textContent = platform + " selected ✅";
+  });
+});
+
+// PASTE
 pasteBtn.addEventListener("click", async () => {
   try {
     const text = await navigator.clipboard.readText();
@@ -17,22 +45,31 @@ pasteBtn.addEventListener("click", async () => {
   }
 });
 
+// VIDEO / AUDIO
 document.querySelectorAll(".mode").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".mode").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".mode").forEach(x =>
+      x.classList.remove("active")
+    );
+
     btn.classList.add("active");
     mode = btn.dataset.mode;
   });
 });
 
+// QUALITY
 document.querySelectorAll(".quality").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".quality").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".quality").forEach(x =>
+      x.classList.remove("active")
+    );
+
     btn.classList.add("active");
     quality = btn.dataset.quality;
   });
 });
 
+// GET VIDEO INFO
 async function getInfo(url) {
   const response = await fetch("/api/info", {
     method: "POST",
@@ -45,7 +82,9 @@ async function getInfo(url) {
   return await response.json();
 }
 
+// DOWNLOAD
 downloadBtn.addEventListener("click", async () => {
+
   const url = urlInput.value.trim();
 
   if (!url) {
@@ -55,13 +94,18 @@ downloadBtn.addEventListener("click", async () => {
 
   downloadBtn.disabled = true;
   downloadBtn.textContent = "PROCESSING...";
-  statusBox.textContent = "Video information check ho rahi hai...";
+
+  statusBox.textContent =
+    platform + " video information check ho rahi hai...";
 
   try {
+
     const info = await getInfo(url);
 
     if (!info.success) {
-      throw new Error(info.error || "Video information nahi mili.");
+      throw new Error(
+        info.error || "Video information nahi mili."
+      );
     }
 
     resultContent.innerHTML = `
@@ -85,11 +129,14 @@ downloadBtn.addEventListener("click", async () => {
     });
 
     if (!response.ok) {
+
       let message = "Download failed.";
+
       try {
         const data = await response.json();
         message = data.error || message;
       } catch {}
+
       throw new Error(message);
     }
 
@@ -98,37 +145,51 @@ downloadBtn.addEventListener("click", async () => {
     const contentDisposition =
       response.headers.get("Content-Disposition") || "";
 
-    let filename = mode === "audio"
-      ? "rajput-audio.mp3"
-      : "rajput-video.mp4";
+    let filename =
+      mode === "audio"
+        ? "rajput-audio.mp3"
+        : "rajput-video.mp4";
 
-    const match = contentDisposition.match(/filename="?([^"]+)"?/i);
+    const match =
+      contentDisposition.match(/filename="?([^"]+)"?/i);
 
     if (match && match[1]) {
       filename = match[1];
     }
 
-    const downloadUrl = URL.createObjectURL(blob);
+    const downloadUrl =
+      URL.createObjectURL(blob);
+
     const a = document.createElement("a");
 
     a.href = downloadUrl;
     a.download = filename;
+
     document.body.appendChild(a);
     a.click();
     a.remove();
 
     URL.revokeObjectURL(downloadUrl);
 
-    statusBox.textContent = "Download complete ✅";
+    statusBox.textContent =
+      "Download complete ✅";
+
   } catch (error) {
-    statusBox.textContent = error.message || "Download failed.";
-    resultContent.textContent = "Kuch problem aa gayi. URL check karo.";
+
+    statusBox.textContent =
+      error.message || "Download failed.";
+
+    resultContent.textContent =
+      "Kuch problem aa gayi. URL check karo.";
+
   } finally {
+
     downloadBtn.disabled = false;
     downloadBtn.textContent = "DOWNLOAD NOW";
   }
 });
 
+// SECURITY
 function escapeHtml(text) {
   return String(text)
     .replaceAll("&", "&amp;")
